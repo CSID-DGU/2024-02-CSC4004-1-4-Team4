@@ -48,9 +48,9 @@ class _AlarmPingScreenState extends State<AlarmPingScreen> {
                         height: 260,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: isAlarmOn ? Colors.grey[700] : Colors.grey[800],
+                          color: isAlarmOn ? Colors.grey[500] : Colors.grey[600],
                           border: Border.all(
-                            color: isAlarmOn ? Color(0xFFF23838) : Colors.grey,
+                            color: isAlarmOn ? Color(0xFFF23838) : Colors.grey[400]!,
                             width: 8, // 테두리 두께
                           ),
                           // 그림자 효과 추가
@@ -70,11 +70,10 @@ class _AlarmPingScreenState extends State<AlarmPingScreen> {
                           children: [
                             // 이미지로 아이콘 대체
                             Image.asset(
-                              'assets/images/siren.png',
-                              width: 180,
-                              height: 180,
+                              'assets/images/splash_logo.png',
+                              width: 200,
+                              height: 200,
                             ),
-                            SizedBox(height: 0),
                             Text(
                               isAlarmOn ? 'ON' : 'OFF',
                               style: TextStyle(
