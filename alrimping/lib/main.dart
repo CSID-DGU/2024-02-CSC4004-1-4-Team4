@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               },
               // Image.asset에 직접 width, height 적용
               child: Image.asset(
-                'assets/images/splash_logo.png',
+                'images/splash_logo.png',
                 width: 400, // 원하는 너비로 설정
                 height: 400, // 원하는 높이로 설정
                 fit: BoxFit.contain, // 이미지 크기를 부모에 맞춰 조정
