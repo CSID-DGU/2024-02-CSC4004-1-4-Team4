@@ -70,7 +70,7 @@ class _AlarmPingScreenState extends State<AlarmPingScreen> {
                           children: [
                             // 이미지로 아이콘 대체
                             Image.asset(
-                              'assets/images/splash_logo.png',
+                              'images/splash_logo.png',
                               width: 200,
                               height: 200,
                             ),
