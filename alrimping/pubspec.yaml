@@ -28,5 +28,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/splash_logo.png
-    - assets/images/siren.png
+    - images/splash_logo.png
+    - images/siren.png
