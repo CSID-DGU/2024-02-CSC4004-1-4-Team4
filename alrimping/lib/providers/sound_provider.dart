@@ -12,18 +12,9 @@ class SoundProvider with ChangeNotifier {
   double get sensitivity => _sensitivity;
 
   void initialize() {
-    _backgroundService.isRunning().then((isRunning) {
-      if (!isRunning) {
-        debugPrint('Background service is not running. Attempting to start.');
-        _backgroundService.startService();
-      }
-    });
-
     _backgroundService.on('update').listen((event) {
       if (event != null && event['decibel'] != null) {
-        double decibel = double.tryParse(event['decibel'].toString()) ?? 0.0;
-        _currentDecibel = decibel;
-        debugPrint('Decibel updated: $_currentDecibel');
+        _currentDecibel = double.parse(event['decibel'].toString());
         notifyListeners();
       }
     });
@@ -33,22 +24,21 @@ class SoundProvider with ChangeNotifier {
     _sensitivity = value;
     if (_isListening) {
       _backgroundService.invoke(
-        'updateSensitivity',
-        {'sensitivity': value.toString()},
+          'updateSensitivity',
+          {'sensitivity': value.toString()}
       );
     }
     notifyListeners();
   }
 
-  Future<void> toggleListening() async {
-    bool isRunning = await _backgroundService.isRunning(); // 백그라운드 서비스 실행 상태 확인
-    if (!_isListening && !isRunning) {
+  void toggleListening() {
+    if (!_isListening) {
       _backgroundService.startService();
       _backgroundService.invoke(
-        'start',
-        {'sensitivity': _sensitivity.toString()},
+          'start',
+          {'sensitivity': _sensitivity.toString()}
       );
-    } else if (_isListening) {
+    } else {
       _backgroundService.invoke('stop');
     }
     _isListening = !_isListening;

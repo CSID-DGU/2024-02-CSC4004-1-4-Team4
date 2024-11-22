@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
@@ -10,11 +9,7 @@ import 'package:noise_meter/noise_meter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final status = await Permission.microphone.status;
-  if (!status.isGranted) {
-    debugPrint('Microphone permission not granted.');
-    await Permission.microphone.request();
-  }
+  await Permission.microphone.request();
   await initializeService();
   runApp(const MyApp());
 }
@@ -43,43 +38,49 @@ Future<void> initializeService() async {
 @pragma('vm:entry-point')
 void onStart(ServiceInstance service) {
   NoiseMeter? noiseMeter;
-  StreamSubscription<NoiseReading>? noiseSubscription;
   double sensitivity = 3.0;
-
-  void stopNoiseMeter() {
-    noiseSubscription?.cancel();
-    noiseSubscription = null;
-    noiseMeter = null;
-  }
 
   if (service is AndroidServiceInstance) {
     service.setAsForegroundService();
   }
 
+  service.on('updateSensitivity').listen((event) {
+    if (event != null && event['sensitivity'] != null) {
+      sensitivity = double.parse(event['sensitivity'].toString());
+    }
+  });
+
   service.on('start').listen((event) {
-    stopNoiseMeter();
+    if (event != null && event['sensitivity'] != null) {
+      sensitivity = double.parse(event['sensitivity'].toString());
+    }
+
     try {
       noiseMeter = NoiseMeter();
-      noiseSubscription = noiseMeter!.noise.listen(
-            (NoiseReading? reading) {
-          if (reading == null || reading.maxDecibel.isNaN || reading.maxDecibel.isInfinite) {
-            debugPrint('Invalid NoiseReading received.');
-            service.invoke('update', {'decibel': '0.0'});
-            return;
-          }
+      noiseMeter?.noise.listen(
+            (NoiseReading reading) {
           double decibel = reading.maxDecibel * (sensitivity / 3.0);
-          debugPrint('Current decibel: $decibel');
-          service.invoke('update', {'decibel': decibel.toString()});
+
+          if (service is AndroidServiceInstance) {
+            service.setForegroundNotificationInfo(
+              title: "Alrimping is running",
+              content: "현재 데시벨: ${decibel.toStringAsFixed(1)} dB",
+            );
+          }
+
+          service.invoke(
+            'update',
+            {'decibel': decibel.toString()},
+          );
         },
       );
-      debugPrint('NoiseMeter initialized successfully.');
     } catch (e) {
-      debugPrint('Error initializing NoiseMeter: $e');
+      debugPrint('Error starting noise meter: $e');
     }
   });
 
   service.on('stop').listen((event) {
-    stopNoiseMeter();
+    noiseMeter = null;
     if (service is AndroidServiceInstance) {
       service.stopSelf();
     }
