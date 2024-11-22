@@ -6,6 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import './screens/home_screen.dart';
 import './providers/sound_provider.dart';
 import 'package:noise_meter/noise_meter.dart';
+import 'dart:async';  // StreamSubscription을 위해 추가
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,15 +15,10 @@ void main() async {
   runApp(const MyApp());
 }
 
-Future<void> initializeService() async {
+Future<FlutterBackgroundService> initializeService() async {
   final service = FlutterBackgroundService();
 
   await service.configure(
-    iosConfiguration: IosConfiguration(
-      autoStart: false,
-      onForeground: onStart,
-      onBackground: onIosBackground,
-    ),
     androidConfiguration: AndroidConfiguration(
       onStart: onStart,
       isForegroundMode: true,
@@ -32,12 +28,20 @@ Future<void> initializeService() async {
       initialNotificationContent: '초기화 중...',
       foregroundServiceNotificationId: 888,
     ),
+    iosConfiguration: IosConfiguration(
+      autoStart: false,
+      onForeground: onStart,
+      onBackground: onIosBackground,
+    ),
   );
+
+  return service;  // 초기화된 서비스 반환
 }
 
 @pragma('vm:entry-point')
 void onStart(ServiceInstance service) {
   NoiseMeter? noiseMeter;
+  StreamSubscription? noiseSubscription;
   double sensitivity = 3.0;
 
   if (service is AndroidServiceInstance) {
@@ -51,15 +55,32 @@ void onStart(ServiceInstance service) {
   });
 
   service.on('start').listen((event) {
+    // 서비스를 foreground로 설정
+    if (service is AndroidServiceInstance) {
+      service.setAsForegroundService();
+    }
+
     if (event != null && event['sensitivity'] != null) {
       sensitivity = double.parse(event['sensitivity'].toString());
     }
 
     try {
+      // 기존 리소스 정리
+      noiseSubscription?.cancel();
+      noiseMeter = null;
+
+      // 새로운 인스턴스 생성 및 측정 시작
       noiseMeter = NoiseMeter();
-      noiseMeter?.noise.listen(
+      noiseSubscription = noiseMeter?.noise.listen(
             (NoiseReading reading) {
-          double decibel = reading.maxDecibel * (sensitivity / 3.0);
+          double decibel = reading.maxDecibel;
+
+          if (decibel.isFinite && decibel > -double.infinity) {
+            decibel = decibel * (sensitivity / 3.0);
+            if (decibel < 0) decibel = 0;
+          } else {
+            decibel = 0.0;
+          }
 
           if (service is AndroidServiceInstance) {
             service.setForegroundNotificationInfo(
@@ -73,6 +94,21 @@ void onStart(ServiceInstance service) {
             {'decibel': decibel.toString()},
           );
         },
+        onError: (e) {
+          debugPrint('Noise measurement error: $e');
+          // 에러 발생 시 리소스 정리
+          noiseSubscription?.cancel();
+          noiseMeter = null;
+
+          // 잠시 후 재시작
+          Future.delayed(const Duration(milliseconds: 500), () {
+            service.invoke(
+                'start',
+                {'sensitivity': sensitivity.toString()}
+            );
+          });
+        },
+        cancelOnError: false,
       );
     } catch (e) {
       debugPrint('Error starting noise meter: $e');
@@ -80,6 +116,7 @@ void onStart(ServiceInstance service) {
   });
 
   service.on('stop').listen((event) {
+    noiseSubscription?.cancel();
     noiseMeter = null;
     if (service is AndroidServiceInstance) {
       service.stopSelf();

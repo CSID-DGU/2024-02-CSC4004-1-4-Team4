@@ -11,25 +11,40 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   bool _hasPermission = false;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _checkAndRequestPermission();
     Provider.of<SoundProvider>(context, listen: false).initialize();
   }
 
-  Future<void> _checkAndRequestPermission() async {
-    final status = await Permission.microphone.request();
-    setState(() {
-      _hasPermission = status.isGranted;
-    });
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
-    if (!status.isGranted) {
-      // 권한이 거부된 경우 다이얼로그 표시
-      if (mounted) {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _checkAndRequestPermission();
+    }
+  }
+
+  Future<void> _checkAndRequestPermission() async {
+    if (!mounted) return;
+
+    final status = await Permission.microphone.request();
+    if (mounted) {
+      setState(() {
+        _hasPermission = status.isGranted;
+      });
+
+      if (!status.isGranted && mounted) {
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -47,6 +62,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                 ),
+                TextButton(
+                  child: const Text('취소'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
               ],
             );
           },
@@ -57,45 +78,71 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F2),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFA61420),
-        title: const Text(
-          'Alrimping',
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        toolbarHeight: 70,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: !_hasPermission
-          ? Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              '마이크 권한이 필요합니다',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return WillPopScope(
+      onWillPop: () async {
+        // 뒤로가기 버튼 처리
+        final soundProvider = Provider.of<SoundProvider>(context, listen: false);
+        if (soundProvider.isListening) {
+          final shouldExit = await showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('알림'),
+              content: const Text('소리 감지가 진행 중입니다. 정말 종료하시겠습니까?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: const Text('취소'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: const Text('종료'),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _checkAndRequestPermission,
-              child: const Text('권한 요청'),
+          );
+          return shouldExit ?? false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF2F2F2),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFA61420),
+          title: const Text(
+            'Alrimping',
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          toolbarHeight: 70,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                );
+              },
             ),
           ],
         ),
-      )
-          : Consumer<SoundProvider>(
+        body: !_hasPermission
+            ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '마이크 권한이 필요합니다',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _checkAndRequestPermission,
+                child: const Text('권한 요청'),
+              ),
+            ],
+          ),
+        )
+            : Consumer<SoundProvider>(
           builder: (context, soundProvider, child) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -180,7 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             );
-          }
+          },
+        ),
       ),
     );
   }

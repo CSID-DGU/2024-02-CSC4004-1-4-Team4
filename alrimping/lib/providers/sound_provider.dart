@@ -1,21 +1,28 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+import '../main.dart';  // initializeService를 import
 
 class SoundProvider with ChangeNotifier {
   bool _isListening = false;
   double _currentDecibel = 0.0;
   double _sensitivity = 3.0;
-  final FlutterBackgroundService _backgroundService = FlutterBackgroundService();
+  FlutterBackgroundService? _backgroundService;
 
   bool get isListening => _isListening;
   double get currentDecibel => _currentDecibel;
   double get sensitivity => _sensitivity;
 
-  void initialize() {
-    _backgroundService.on('update').listen((event) {
+  Future<void> initialize() async {
+    _backgroundService = await initializeService();
+
+    _backgroundService?.on('update').listen((event) {
       if (event != null && event['decibel'] != null) {
-        _currentDecibel = double.parse(event['decibel'].toString());
-        notifyListeners();
+        try {
+          _currentDecibel = double.parse(event['decibel'].toString());
+          notifyListeners();
+        } catch (e) {
+          debugPrint('Error parsing decibel: $e');
+        }
       }
     });
   }
@@ -23,7 +30,7 @@ class SoundProvider with ChangeNotifier {
   void setSensitivity(double value) {
     _sensitivity = value;
     if (_isListening) {
-      _backgroundService.invoke(
+      _backgroundService?.invoke(
           'updateSensitivity',
           {'sensitivity': value.toString()}
       );
@@ -31,24 +38,34 @@ class SoundProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleListening() {
-    if (!_isListening) {
-      _backgroundService.startService();
-      _backgroundService.invoke(
-          'start',
-          {'sensitivity': _sensitivity.toString()}
-      );
-    } else {
-      _backgroundService.invoke('stop');
+  Future<void> toggleListening() async {
+    try {
+      if (!_isListening) {
+        _backgroundService ??= await initializeService();  // null-aware 수정
+
+        var service = _backgroundService;
+        if (service != null) {  // null check
+          await service.startService();
+          service.invoke(
+              'start',
+              {'sensitivity': _sensitivity.toString()}
+          );
+        }
+      } else {
+        _backgroundService?.invoke('stop');
+        _backgroundService = null;
+      }
+      _isListening = !_isListening;
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error toggling service: $e');
     }
-    _isListening = !_isListening;
-    notifyListeners();
   }
 
   @override
   void dispose() {
     if (_isListening) {
-      _backgroundService.invoke('stop');
+      _backgroundService?.invoke('stop');
     }
     super.dispose();
   }
