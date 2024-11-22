@@ -12,10 +12,15 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.0.5
   cupertino_icons: ^1.0.8
+  permission_handler: ^11.3.1
+  noise_meter: ^5.0.2
+  provider: ^6.1.2
+  flutter_background_service: ^5.0.10
+  flutter_background_service_android: ^6.0.1
 
 flutter_native_splash:
-  color: "#F2F2F2"              # 스플래시 배경색
-  image: assets/images/splash_logo.png  # 로고 이미지 경로
+  color: "#F2F2F2"
+  image: assets/images/splash_logo.png
   android: true
   ios: true
 
@@ -28,5 +33,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/splash_logo.png
-    - images/siren.png
+    - assets/images/splash_logo.png
