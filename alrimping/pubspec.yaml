@@ -10,24 +10,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_native_splash: ^2.0.5
-  cupertino_icons: ^1.0.8
-  permission_handler: ^11.3.1
-  noise_meter: ^5.0.2
-  provider: ^6.1.2
-  flutter_background_service: ^5.0.10
-  flutter_background_service_android: ^6.0.1
+  flutter_sound: ^9.2.13
+  permission_handler: ^11.3.0
+  path_provider: ^2.0.11
+  flutter_background_service: 5.0.2
+  flutter_background_service_android: 6.1.0
+  flutter_background_service_ios: ^5.0.0
+  flutter_local_notifications: ^18.0.1
 
 flutter_native_splash:
   color: "#F2F2F2"
   image: assets/images/splash_logo.png
   android: true
-  ios: true
+  ios: true0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png" # 앱 아이콘 경로
 
 flutter:
   uses-material-design: true

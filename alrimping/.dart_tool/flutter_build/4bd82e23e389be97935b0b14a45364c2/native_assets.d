@@ -1,0 +1,1 @@
+ D:\\3_2GongSo\\2024-02-CSC4004-1-4-Team4\\alrimping\\.dart_tool\\flutter_build\\4bd82e23e389be97935b0b14a45364c2\\native_assets.yaml: 
