@@ -24,18 +24,18 @@
 18    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 18-->D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:7:5-79
 18-->D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:7:22-76
-19    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-19-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-81
-19-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-78
-20    <uses-permission android:name="android.permission.WAKE_LOCK" />
-20-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-68
-20-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-65
-21    <uses-permission android:name="android.permission.VIBRATE" />
-21-->[:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-66
-21-->[:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-63
-22    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-22-->[:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-77
-22-->[:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-74
+19    <uses-permission android:name="android.permission.WAKE_LOCK" />
+19-->D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:8:5-67
+19-->D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:8:22-65
+20    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+20-->D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:9:5-76
+20-->D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:9:22-74
+21    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+21-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-81
+21-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-78
+22    <uses-permission android:name="android.permission.VIBRATE" />
+22-->[:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-66
+22-->[:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-63
 23    <uses-permission android:name="android.permission.BLUETOOTH" />
 23-->[com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:7:5-68
 23-->[com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:7:22-65
@@ -75,138 +75,145 @@
 43        android:extractNativeLibs="true"
 44        android:icon="@mipmap/ic_launcher"
 45        android:label="alrimping" >
-46        <activity
-47            android:name="com.team4.alrimping.MainActivity"
-48            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-49            android:exported="true"
-50            android:hardwareAccelerated="true"
-51            android:launchMode="singleTop"
-52            android:taskAffinity=""
-53            android:theme="@style/LaunchTheme"
-54            android:windowSoftInputMode="adjustResize" >
-55            <meta-data
-56                android:name="io.flutter.embedding.android.NormalTheme"
-57                android:resource="@style/NormalTheme" />
-58
-59            <intent-filter>
-60                <action android:name="android.intent.action.MAIN" />
-61
-62                <category android:name="android.intent.category.LAUNCHER" />
-63            </intent-filter>
-64        </activity>
+46
+47        <!-- 백그라운드 서비스 선언 -->
+48        <service
+49            android:name="com.example.app.core.service.BackgroundService"
+50            android:exported="false"
+51            android:foregroundServiceType="microphone" />
+52
+53        <activity
+54            android:name="com.team4.alrimping.MainActivity"
+55            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+56            android:exported="true"
+57            android:hardwareAccelerated="true"
+58            android:launchMode="singleTop"
+59            android:taskAffinity=""
+60            android:theme="@style/LaunchTheme"
+61            android:windowSoftInputMode="adjustResize" >
+62            <meta-data
+63                android:name="io.flutter.embedding.android.NormalTheme"
+64                android:resource="@style/NormalTheme" />
 65
-66        <meta-data
-67            android:name="flutterEmbedding"
-68            android:value="2" />
-69
-70        <service
-71            android:name="id.flutter.flutter_background_service.BackgroundService"
-72            android:enabled="true"
-72-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-35
-73            android:exported="false"
-74            android:foregroundServiceType="microphone"
-75            android:stopWithTask="false" />
-75-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-41
+66            <intent-filter>
+67                <action android:name="android.intent.action.MAIN" />
+68
+69                <category android:name="android.intent.category.LAUNCHER" />
+70            </intent-filter>
+71        </activity>
+72
+73        <meta-data
+74            android:name="flutterEmbedding"
+75            android:value="2" />
 76
-77        <receiver
-77-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:9-21:39
-78            android:name="id.flutter.flutter_background_service.WatchdogReceiver"
-78-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-82
+77        <service
+78            android:name="id.flutter.flutter_background_service.BackgroundService"
 79            android:enabled="true"
-79-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-35
-80            android:exported="true" />
-80-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-36
-81        <receiver
-81-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:9-30:20
-82            android:name="id.flutter.flutter_background_service.BootReceiver"
-82-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-78
-83            android:enabled="true"
-83-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-35
-84            android:exported="true" >
-84-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-36
-85            <intent-filter>
-85-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-29:29
-86                <action android:name="android.intent.action.BOOT_COMPLETED" />
-86-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:17-79
-86-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:25-76
-87                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-87-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-82
-87-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:25-79
-88            </intent-filter>
-89        </receiver>
-90
-91        <uses-library
-91-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
-92            android:name="androidx.window.extensions"
-92-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
-93            android:required="false" />
-93-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
-94        <uses-library
-94-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
-95            android:name="androidx.window.sidecar"
-95-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
-96            android:required="false" />
-96-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+79-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-35
+80            android:exported="false"
+81            android:foregroundServiceType="microphone"
+82            android:stopWithTask="false" />
+82-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-41
+83
+84        <receiver
+84-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:9-21:39
+85            android:name="id.flutter.flutter_background_service.WatchdogReceiver"
+85-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-82
+86            android:enabled="true"
+86-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-35
+87            android:exported="true" />
+87-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-36
+88        <receiver
+88-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:9-30:20
+89            android:name="id.flutter.flutter_background_service.BootReceiver"
+89-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-78
+90            android:enabled="true"
+90-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:13-35
+91            android:exported="true" >
+91-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-36
+92            <intent-filter>
+92-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-29:29
+93                <action android:name="android.intent.action.BOOT_COMPLETED" />
+93-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:17-79
+93-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:25-76
+94                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+94-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:17-82
+94-->[:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:25-79
+95            </intent-filter>
+96        </receiver>
 97
-98        <provider
-98-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
-99            android:name="androidx.startup.InitializationProvider"
-99-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:25:13-67
-100            android:authorities="com.team4.alrimping.androidx-startup"
-100-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:26:13-68
-101            android:exported="false" >
-101-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:27:13-37
-102            <meta-data
-102-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
-103                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-103-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
-104                android:value="androidx.startup" />
-104-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
-105            <meta-data
-105-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
-106                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-106-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
-107                android:value="androidx.startup" />
-107-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
-108        </provider>
-109
-110        <receiver
-110-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
-111            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-111-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
-112            android:directBootAware="false"
-112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
-113            android:enabled="true"
-113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
-114            android:exported="true"
-114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
-115            android:permission="android.permission.DUMP" >
-115-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
-116            <intent-filter>
-116-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
-117                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
-117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
-118            </intent-filter>
-119            <intent-filter>
-119-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
-120                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
-120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
-121            </intent-filter>
-122            <intent-filter>
-122-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
-123                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-123-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
-123-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
-124            </intent-filter>
-125            <intent-filter>
-125-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
-126                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-126-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
-126-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
-127            </intent-filter>
-128        </receiver>
-129    </application>
-130
-131</manifest>
+98        <uses-library
+98-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
+99            android:name="androidx.window.extensions"
+99-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
+100            android:required="false" />
+100-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
+101        <uses-library
+101-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
+102            android:name="androidx.window.sidecar"
+102-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
+103            android:required="false" />
+103-->[androidx.window:window:1.2.0] C:\Users\LJW\.gradle\caches\transforms-3\3e108fe9d597d03770ae82acaebb5b63\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+104
+105        <provider
+105-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
+106            android:name="androidx.startup.InitializationProvider"
+106-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:25:13-67
+107            android:authorities="com.team4.alrimping.androidx-startup"
+107-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:26:13-68
+108            android:exported="false" >
+108-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:27:13-37
+109            <meta-data
+109-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+110                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+110-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+111                android:value="androidx.startup" />
+111-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\LJW\.gradle\caches\transforms-3\5d9083683aa46ad6646ca7a884bd56df\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+112            <meta-data
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+113                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+114                android:value="androidx.startup" />
+114-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+115        </provider>
+116
+117        <receiver
+117-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+118            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+118-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+119            android:directBootAware="false"
+119-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+120            android:enabled="true"
+120-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+121            android:exported="true"
+121-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+122            android:permission="android.permission.DUMP" >
+122-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+123            <intent-filter>
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+124                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+124-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+124-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+125            </intent-filter>
+126            <intent-filter>
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+127                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+127-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+127-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+128            </intent-filter>
+129            <intent-filter>
+129-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+130                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+130-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+130-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+131            </intent-filter>
+132            <intent-filter>
+132-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+133                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+133-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+133-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\LJW\.gradle\caches\transforms-3\1e1e8719823df11c58e964840aa823f6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+134            </intent-filter>
+135        </receiver>
+136    </application>
+137
+138</manifest>

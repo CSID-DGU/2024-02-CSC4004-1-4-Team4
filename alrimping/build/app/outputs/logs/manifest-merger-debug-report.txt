@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:9:5-41:19
+INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:12:5-51:19
 INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\debug\AndroidManifest.xml
 MERGED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-31:19
 MERGED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-31:19
@@ -25,8 +25,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\LJ
 	android:name
 		INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:2:1-42:12
-MERGED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:2:1-42:12
+ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:2:1-52:12
+MERGED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:2:1-52:12
 INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -95,6 +95,20 @@ uses-permission#android.permission.SCHEDULE_EXACT_ALARM
 ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:7:5-79
 	android:name
 		ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:7:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:8:5-67
+MERGED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-68
+MERGED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-68
+MERGED from [com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:8:5-68
+MERGED from [com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:8:5-68
+	android:name
+		ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:8:22-65
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:9:5-76
+MERGED from [:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-77
+MERGED from [:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-77
+	android:name
+		ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\main\AndroidManifest.xml:9:22-74
 uses-permission#android.permission.INTERNET
 ADDED from D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
@@ -187,12 +201,6 @@ uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-81
 	android:name
 		ADDED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-78
-uses-permission#android.permission.WAKE_LOCK
-ADDED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-68
-MERGED from [com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:8:5-68
-MERGED from [com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:8:5-68
-	android:name
-		ADDED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-65
 service#id.flutter.flutter_background_service.BackgroundService
 MERGED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:44
 MERGED from [:flutter_background_service_android] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:44
@@ -232,10 +240,6 @@ uses-permission#android.permission.VIBRATE
 ADDED from [:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-66
 	android:name
 		ADDED from [:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-63
-uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from [:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-77
-	android:name
-		ADDED from [:flutter_local_notifications] D:\3_2GongSo\2024-02-CSC4004-1-4-Team4\alrimping\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-74
 uses-permission#android.permission.BLUETOOTH
 ADDED from [com.github.canardoux:flutter_sound_core:9.17.0] C:\Users\LJW\.gradle\caches\transforms-3\05d745318d6ca4c5d8adf3fecafa450f\transformed\jetified-flutter_sound_core-9.17.0\AndroidManifest.xml:7:5-68
 	android:name
