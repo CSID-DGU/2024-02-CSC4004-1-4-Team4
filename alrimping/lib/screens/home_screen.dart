@@ -6,14 +6,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'settings_screen.dart';
 
-class SoundDetectionScreen extends StatefulWidget {
-  const SoundDetectionScreen({super.key});
+class HomeScreen extends StatefulWidget {  // HomeScreen으로 클래스명 수정
+  const HomeScreen({super.key});
 
   @override
-  State<SoundDetectionScreen> createState() => _SoundDetectionScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
+class _HomeScreenState extends State<HomeScreen> {  // State 클래스명도 수정
   final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
   final FlutterSoundPlayer _player = FlutterSoundPlayer();
   final FlutterBackgroundService _backgroundService = FlutterBackgroundService();
@@ -27,6 +27,41 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
     _initializeSoundComponents();
   }
 
+  // 알림 권한 확인 및 요청 다이얼로그 표시
+  Future<void> _checkNotificationPermission() async {
+    final notificationStatus = await Permission.notification.status;
+    if (!notificationStatus.isGranted) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('알림 권한 필요'),
+              content: const Text(
+                '소리 감지 기능을 사용하기 위해서는 알림 권한이 필요합니다.\n'
+                    '설정에서 알림 권한을 허용해주세요.',
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('나중에'),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                TextButton(
+                  child: const Text('설정으로 이동'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    openAppSettings();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
+
   Future<void> _initializeSoundComponents() async {
     try {
       final micPermission = await Permission.microphone.request();
@@ -34,10 +69,12 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
         throw Exception('Microphone permission not granted');
       }
 
+      // 알림 권한 확인
+      await _checkNotificationPermission();
+
       await _recorder.openRecorder();
       await _player.openPlayer();
 
-      // 서비스 시작 전에 초기화 완료 확인
       if (!(await _backgroundService.isRunning())) {
         await _backgroundService.startService();
       }
@@ -53,6 +90,15 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
 
   void _toggleRecording() async {
     try {
+      // 녹음 시작 전 알림 권한 다시 확인
+      if (!_isRecording) {
+        final notificationStatus = await Permission.notification.status;
+        if (!notificationStatus.isGranted) {
+          await _checkNotificationPermission();
+          return;
+        }
+      }
+
       if (_isRecording) {
         if (_recorder.isRecording) {
           _recordingPath = await _recorder.stopRecorder();
@@ -77,19 +123,22 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
   }
 
   void _togglePlayback() async {
-    if (_recordingPath == null) return;
+    if (_recordingPath == null) return;  // 녹음된 파일이 없으면 실행하지 않음
 
     try {
       if (_isPlaying) {
+        // 현재 재생 중이면 중지
         await _player.stopPlayer();
         setState(() {
           _isPlaying = false;
         });
       } else {
+        // 현재 중지 상태면 재생 시작
         await _player.startPlayer(
           fromURI: _recordingPath,
           codec: Codec.aacADTS,
           whenFinished: () {
+            // 재생이 완료되면 상태 업데이트
             setState(() {
               _isPlaying = false;
             });

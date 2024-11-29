@@ -1,4 +1,4 @@
-#Fri Nov 29 17:41:46 KST 2024
+#Sat Nov 30 07:03:05 KST 2024
 base.0=D\:\\3_2GongSo\\2024-02-CSC4004-1-4-Team4\\alrimping\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=D\:\\3_2GongSo\\2024-02-CSC4004-1-4-Team4\\alrimping\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=D\:\\3_2GongSo\\2024-02-CSC4004-1-4-Team4\\alrimping\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
