@@ -1,4 +1,3 @@
-// main.dart
 import 'dart:async';
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
@@ -28,6 +27,7 @@ Future<void> initializeService() async {
   final service = FlutterBackgroundService();
 
   if (Platform.isAndroid) {
+    // 알림 채널 초기화
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
         android: AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -39,11 +39,12 @@ Future<void> initializeService() async {
         AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
+    // 서비스 구성
     await service.configure(
       androidConfiguration: AndroidConfiguration(
         onStart: onStart,
-        autoStart: false,
-        isForegroundMode: false,
+        autoStart: false, // 앱 시작 시 자동 실행 방지
+        isForegroundMode: false, // Foreground Service 모드 해제
         notificationChannelId: channel.id,
         foregroundServiceNotificationId: 888,
       ),
@@ -62,7 +63,9 @@ Future<bool> onIosBackground(ServiceInstance service) async {
 }
 
 @pragma('vm:entry-point')
-void onStart(ServiceInstance service) {
+void onStart(ServiceInstance service) async {
+  // Foreground Service를 즉시 시작하지 않음
+
   service.on('startListening').listen((event) {
     if (service is AndroidServiceInstance) {
       service.setAsForegroundService();

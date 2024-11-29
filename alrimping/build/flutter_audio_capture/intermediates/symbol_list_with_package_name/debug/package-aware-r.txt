@@ -1,0 +1,1 @@
+com.ymd.flutter_audio_capture

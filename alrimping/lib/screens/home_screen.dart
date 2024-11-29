@@ -36,7 +36,11 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
 
       await _recorder.openRecorder();
       await _player.openPlayer();
-      await _backgroundService.startService();
+
+      // 서비스 시작 전에 초기화 완료 확인
+      if (!(await _backgroundService.isRunning())) {
+        await _backgroundService.startService();
+      }
     } catch (e) {
       debugPrint('Error initializing components: $e');
     }
@@ -83,13 +87,13 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
         });
       } else {
         await _player.startPlayer(
-            fromURI: _recordingPath,
-            codec: Codec.aacADTS,
-            whenFinished: () {
-              setState(() {
-                _isPlaying = false;
-              });
-            }
+          fromURI: _recordingPath,
+          codec: Codec.aacADTS,
+          whenFinished: () {
+            setState(() {
+              _isPlaying = false;
+            });
+          },
         );
         setState(() {
           _isPlaying = true;
@@ -119,9 +123,9 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
         title: const Text(
           'Sound Detection',
           style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.white
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         toolbarHeight: 70,
@@ -159,16 +163,20 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
                         shape: BoxShape.circle,
                         color: _isRecording ? Colors.grey[500] : Colors.grey[600],
                         border: Border.all(
-                          color: _isRecording ? const Color(0xFFF23838) : Colors.grey[400]!,
+                          color: _isRecording
+                              ? const Color(0xFFF23838)
+                              : Colors.grey[400]!,
                           width: 8,
                         ),
-                        boxShadow: _isRecording ? [
+                        boxShadow: _isRecording
+                            ? [
                           BoxShadow(
                             color: const Color(0xFFF23838).withOpacity(0.6),
                             spreadRadius: 30,
                             blurRadius: 40,
                           ),
-                        ] : [],
+                        ]
+                            : [],
                       ),
                       child: Center(
                         child: Text(
@@ -191,8 +199,8 @@ class _SoundDetectionScreenState extends State<SoundDetectionScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFA61420),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 12
+                          horizontal: 24,
+                          vertical: 12,
                         ),
                       ),
                     ),
