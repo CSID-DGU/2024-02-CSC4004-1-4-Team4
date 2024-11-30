@@ -4,13 +4,10 @@
 **"위험한 소리, 놓치지 마세요!"**  
 AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고를 주는 스마트 안전 앱입니다.
 
----
-
 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 40px; background-color: #f9f9f9; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto;">
     <img src="alrimping/assets/images/app_icon.png" alt="App logo" style="width: 150px; height: 150px; border-radius: 20px; border: 4px solid #333; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);">
     <div style="text-align: center;">
-        <span style="font-size: 24px; font-weight: bold; color: #333; line-height: 1.5; display: block; margin-bottom: 10px;">위험한 소리, 놓치지 마세요!</span>
-        <span style="font-size: 18px; color: #666; line-height: 1.6; font-style: italic;">AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고를 주는 스마트 안전 앱입니다.</span>
+      </span>
     </div>
 </div>
 
