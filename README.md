@@ -1,7 +1,7 @@
 ### 2024-02-CSC4004-1-4-Team4
-<div style="text-align: center;">
+
 # 🚀 Alrimping  
-</div>
+
 **"위험한 소리, 놓치지 마세요!"**  
 AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고를 주는 스마트 안전 앱입니다.
 
@@ -15,9 +15,9 @@ AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고�
 
 
 ---
-<div style="text-align: center;">
+
 ## 📱 앱 소개  
-</div>
+
 Alrimping은 다음과 같은 기능을 제공합니다:  
 - **AI 소리 감지**: 위험한 소리(차 경적, 비명 등)를 실시간 분석.  
 - **스마트 알림**: 배경에서 동작하며 팝업으로 사용자에게 경고.  
@@ -27,9 +27,9 @@ Alrimping은 다음과 같은 기능을 제공합니다:
 
 ---
 
-<div style="text-align: center;">
+
 ## ⚙️ 기술 스택 
-</div>
+
 
 - **프론트엔드**: Flutter  
 - **백엔드**: TensorFlow 기반 AI 모델  
@@ -37,9 +37,9 @@ Alrimping은 다음과 같은 기능을 제공합니다:
 - **디자인 툴**: Figma  
 
 ---
-<div style="text-align: center;">
+
 ## 👨‍👩‍👧‍👦 팀원 소개  
-</div>
+
 | 팀원 명   | 역할       |  
 |-----------|------------|  
 | **서동건** | 팀장       |  
@@ -50,9 +50,9 @@ Alrimping은 다음과 같은 기능을 제공합니다:
 
 ---
 
-<div style="text-align: center;">
+
 ## 📂 프로젝트 구조
-</div> 
+
 ### file struct
 #### /lib  ######
  #### ── main.dart                  // 앱의 진입점
