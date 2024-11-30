@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {  // State 클래스명도 수
     super.dispose();
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F2),
@@ -210,7 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {  // State 클래스명도 수
                       height: 260,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: _isRecording ? Colors.grey[500] : Colors.grey[600],
+                        color:
+                            _isRecording ? Colors.grey[500] : Colors.grey[600],
                         border: Border.all(
                           color: _isRecording
                               ? const Color(0xFFF23838)
@@ -219,12 +220,13 @@ class _HomeScreenState extends State<HomeScreen> {  // State 클래스명도 수
                         ),
                         boxShadow: _isRecording
                             ? [
-                          BoxShadow(
-                            color: const Color(0xFFF23838).withOpacity(0.6),
-                            spreadRadius: 30,
-                            blurRadius: 40,
-                          ),
-                        ]
+                                BoxShadow(
+                                  color:
+                                      const Color(0xFFF23838).withOpacity(0.6),
+                                  spreadRadius: 30,
+                                  blurRadius: 40,
+                                ),
+                              ]
                             : [],
                       ),
                       child: Center(
@@ -239,23 +241,9 @@ class _HomeScreenState extends State<HomeScreen> {  // State 클래스명도 수
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
-                  if (_recordingPath != null)
-                    ElevatedButton.icon(
-                      onPressed: _togglePlayback,
-                      icon: Icon(_isPlaying ? Icons.stop : Icons.play_arrow),
-                      label: Text(_isPlaying ? '중지' : '재생'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFA61420),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ),
-                      ),
-                    ),
                   const SizedBox(height: 60),
                   Text(
-                    _isRecording ? "녹음이 진행 중입니다" : "녹음이 중지되었습니다",
+                    _isRecording ? "감지가 진행 중입니다" : "감지가 중지되었습니다",
                     style: const TextStyle(
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
