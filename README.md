@@ -6,10 +6,14 @@ AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고�
 
 ---
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 30px; margin-bottom: 30px; background-color: #f5f5f5; padding: 30px; border-radius: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <img src="alrimping/assets/images/app_icon.png" alt="App logo" style="width: 120px; height: 120px; border-radius: 15px; border: 3px solid #333; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);">
-    <span style="font-size: 20px; font-weight: bold; color: #333; text-align: center; line-height: 1.5;">위험한 소리, 놓치지 마세요! <br> AI 기반으로 주변의 위험 소리를 감지하여 <br> 사용자에게 경고를 주는 스마트 안전 앱입니다.</span>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 40px; background-color: #f9f9f9; padding: 40px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto;">
+    <img src="alrimping/assets/images/app_icon.png" alt="App logo" style="width: 150px; height: 150px; border-radius: 20px; border: 4px solid #333; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);">
+    <div style="text-align: center;">
+        <span style="font-size: 24px; font-weight: bold; color: #333; line-height: 1.5; display: block; margin-bottom: 10px;">위험한 소리, 놓치지 마세요!</span>
+        <span style="font-size: 18px; color: #666; line-height: 1.6; font-style: italic;">AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고를 주는 스마트 안전 앱입니다.</span>
+    </div>
 </div>
+
 
 
 ---
