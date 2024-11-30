@@ -3,7 +3,7 @@
 여기에다가 로고 이미지 파일을 넣을거임
 
 첫번째 방법 
-![App logo](alrimping/assets/images/app_logo.png) 
+![App logo](alrimping/assets/images/app_icon.png) 
 Format: ![이미지 alt명](url 링크) 
 
 
