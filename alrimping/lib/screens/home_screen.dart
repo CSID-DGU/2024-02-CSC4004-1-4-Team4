@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {  // State 클래스명도 수
       appBar: AppBar(
         backgroundColor: const Color(0xFFA61420),
         title: const Text(
-          'Sound Detection',
+          'AI Sound Detection',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
