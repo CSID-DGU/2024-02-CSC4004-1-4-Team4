@@ -47,5 +47,28 @@ Alrimping은 다음과 같은 기능을 제공합니다:
 ---
 
 ## 📂 프로젝트 구조  
-
+file struct
+/lib
+├── main.dart                  // 앱의 진입점
+├── screens                    // 앱의 각 화면 폴더
+│   ├── home_screen.dart
+│   ├── settings_screen.dart
+│   └── alert_screen.dart
+├── widgets                    // 재사용 가능한 위젯 정의 폴더
+│   ├── custom_button.dart
+│   └── custom_dialog.dart
+├── models                     // 데이터 모델 정의 폴더
+│   ├── sound_model.dart
+│   └── detection_result.dart       // AI 분석 결과 모델
+├── providers                  // 상태 관리 및 로직 제공 폴더
+│   ├── sound_provider.dart
+│   ├── detection_provider.dart     // AI 감지 관련 상태 관리
+│   └── background_task_provider.dart  // 백그라운드 작업 관리
+├── services                   // API 및 AI 모델 관련 서비스 폴더
+│   ├── sound_detection_service.dart   // 소리 감지 및 AI 분석 기능
+│   ├── ai_api_service.dart            // 외부 AI API 호출
+│   ├── background_service.dart        // 백그라운드 작업 설정 및 관리
+│   └── notification_service.dart      // 팝업 알림 관리
+└── utils                      // 유틸리티 클래스 및 함수 폴더
+    └── alert_utils.dart
 
