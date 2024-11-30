@@ -6,7 +6,10 @@ AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고�
 
 ---
 
-![App logo](alrimping/assets/images/app_icon.png)
+<div style="display: flex; align-items: center;">
+    <img src="alrimping/assets/images/app_icon.png" alt="App logo" style="margin-right: 10px; width: 50px; height: 50px;">
+    <span>위험한 소리, 놓치지 마세요! AI 기반으로 주변의 위험 소리를 감지하여 사용자에게 경고를 주는 스마트 안전 앱입니다.</span>
+</div>
 
 ---
 
