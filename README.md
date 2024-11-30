@@ -45,12 +45,6 @@ Alrimping은 다음과 같은 기능을 제공합니다:
 
 ---
 
-## 🔗 링크  
-- [GitHub Pages에서 앱 보기](https://username.github.io/repository-name)  
-- [팀 GitHub 리포지토리](https://github.com/username/repository-name)  
-
----
-
 ## 📂 프로젝트 구조  
 ### file struct
 #### /lib  ######
