@@ -1,6 +1,6 @@
 # 2024-02-CSC4004-1-4-Team4
 
-#Alrimping
+Alrimping
 
 |팀원 명 | 역할 |
 |-----|-----|
