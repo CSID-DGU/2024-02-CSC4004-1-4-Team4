@@ -5,9 +5,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'screens/home_screen.dart';  // 올바른 import 경로
+import 'screens/home_screen.dart';
 
-// 알림 채널 설정
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'persistent_channel',
   'Sound Detection Notifications',
@@ -16,12 +15,11 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 );
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 알림 권한 초기 확인
   if (Platform.isAndroid) {
     final status = await Permission.notification.status;
     if (!status.isGranted) {
@@ -44,7 +42,8 @@ Future<void> initializeService() async {
     );
 
     await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
     await service.configure(
@@ -100,7 +99,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFFA61420),
         scaffoldBackgroundColor: const Color(0xFFF2F2F2),
       ),
-      home: const HomeScreen(),  // 올바른 클래스명 사용
+      home: const HomeScreen(),
     );
   }
 }
