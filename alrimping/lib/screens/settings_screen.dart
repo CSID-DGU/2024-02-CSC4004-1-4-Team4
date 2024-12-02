@@ -1,117 +1,21 @@
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final double initialSensitivity;
+
+  const SettingsScreen({super.key, required this.initialSensitivity});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  double _sensitivity = 3.0;
+  late double _sensitivity;
 
-  Widget _buildSensitivityCard() {
-    return _SettingsCard(
-      title: "소리 감지 설정",
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "민감도 조절",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.black87,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const Text('낮음', style: TextStyle(color: Colors.grey)),
-              Expanded(
-                child: Slider(
-                  value: _sensitivity,
-                  min: 1,
-                  max: 5,
-                  divisions: 4,
-                  activeColor: const Color(0xFFF23838),
-                  inactiveColor: Colors.grey.withOpacity(0.3),
-                  label: _sensitivity.round().toString(),
-                  onChanged: (value) {
-                    setState(() {
-                      _sensitivity = value;
-                    });
-                  },
-                ),
-              ),
-              const Text('높음', style: TextStyle(color: Colors.grey)),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Center(
-            child: Text(
-              "현재 민감도: ${_sensitivity.round()}",
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black54,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNotificationCard() {
-    return _SettingsCard(
-      title: "알림 설정",
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildNotificationSwitch(
-            title: "진동 알림",
-            value: true,
-            onChanged: (bool value) {
-              // 나중에 구현할 기능
-            },
-          ),
-          const Divider(
-            height: 1,
-            thickness: 1,
-            color: Color(0xFFEEEEEE),
-          ),
-          _buildNotificationSwitch(
-            title: "소리 알림",
-            value: true,
-            onChanged: (bool value) {
-              // 나중에 구현할 기능
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNotificationSwitch({
-    required String title,
-    required bool value,
-    required ValueChanged<bool> onChanged,
-  }) {
-    return ListTile(
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      trailing: Switch(
-        value: value,
-        onChanged: onChanged,
-        activeColor: const Color(0xFFF23838),
-      ),
-    );
+  @override
+  void initState() {
+    super.initState();
+    _sensitivity = widget.initialSensitivity;
   }
 
   @override
@@ -130,7 +34,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            Navigator.pop(context, _sensitivity); // 민감도 값을 반환
+          },
         ),
       ),
       body: Padding(
@@ -139,9 +45,56 @@ class _SettingsScreenState extends State<SettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            _buildSensitivityCard(),
-            const SizedBox(height: 30),
-            _buildNotificationCard(),
+            _SettingsCard(
+              title: "소리 감지 설정",
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "민감도 조절",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      const Text('낮음', style: TextStyle(color: Colors.grey)),
+                      Expanded(
+                        child: Slider(
+                          value: _sensitivity,
+                          min: 1,
+                          max: 5,
+                          divisions: 4,
+                          activeColor: const Color(0xFFF23838),
+                          inactiveColor: Colors.grey.withOpacity(0.3),
+                          label: _sensitivity.round().toString(),
+                          onChanged: (value) {
+                            setState(() {
+                              _sensitivity = value;
+                            });
+                          },
+                        ),
+                      ),
+                      const Text('높음', style: TextStyle(color: Colors.grey)),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      "현재 민감도: ${_sensitivity.round()}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
