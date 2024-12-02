@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  fl_chart: ^0.69.2
+  noise_meter: ^5.0.2
   flutter_sound: ^9.2.13
   permission_handler: ^11.3.0
   path_provider: ^2.0.11
@@ -22,7 +24,7 @@ flutter_native_splash:
   color: "#F2F2F2"
   image: assets/images/splash_logo.png
   android: true
-  ios: true0
+  ios: true
 
 dev_dependencies:
   flutter_test:
