@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:permission_handler/permission_handler.dart'; // permission_handler 패키지 추가
 import 'screens/home_screen.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -21,9 +21,28 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isAndroid) {
-    final status = await Permission.notification.status;
-    if (!status.isGranted) {
+    // 알림 권한 요청
+    final notificationStatus = await Permission.notification.status;
+    if (!notificationStatus.isGranted) {
       await Permission.notification.request();
+    }
+
+    // 블루투스 권한 요청
+    final bluetoothStatus = await Permission.bluetoothConnect.status;
+    if (!bluetoothStatus.isGranted) {
+      await Permission.bluetoothConnect.request();
+    }
+
+    // 블루투스 스캔 권한 요청
+    final bluetoothScanStatus = await Permission.bluetoothScan.status;
+    if (!bluetoothScanStatus.isGranted) {
+      await Permission.bluetoothScan.request();
+    }
+
+    // 마이크 권한 요청
+    final microphoneStatus = await Permission.microphone.status;
+    if (!microphoneStatus.isGranted) {
+      await Permission.microphone.request();
     }
   }
 
