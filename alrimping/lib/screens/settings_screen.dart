@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+//screens/settings_screen.dart
+>>>>>>> 849047cba10491d28e72d1e61f195cf1919ab9c0
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
