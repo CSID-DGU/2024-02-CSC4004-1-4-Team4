@@ -23,7 +23,7 @@ Alrimping은 다음과 같은 기능을 제공합니다:
 - **스마트 알림**: 배경에서 동작하며 팝업으로 사용자에게 경고.  
 - **디자인 중심 UI**: 사용하기 쉬운 직관적인 인터페이스.
 
-![App Preview](alrimping/assets/images/app_preview.jpeg){: width="50%" }
+![App Preview](alrimping/assets/images/app_preview.jpeg){: width="40%" }
 
 ---
 
