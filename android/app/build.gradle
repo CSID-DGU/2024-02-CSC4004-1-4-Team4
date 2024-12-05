@@ -1,6 +1,7 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+<<<<<<< HEAD
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -11,12 +12,21 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+=======
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
 android {
     namespace = "com.team4.alrimping"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
+<<<<<<< HEAD
     // TFLite 모델을 위한 압축 해제 설정
+=======
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
     aaptOptions {
         noCompress 'tflite'
         noCompress 'lite'
@@ -32,13 +42,22 @@ android {
     }
 
     defaultConfig {
+<<<<<<< HEAD
         applicationId = "com.team4.alrimping"
         minSdk = 28  // TFLite와 백그라운드 서비스를 위한 최소 SDK 버전
+=======
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId = "com.team4.alrimping"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        minSdk = 28 // 수정전 flutter.minSdkVersion
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+<<<<<<< HEAD
     signingConfigs {
         release {
             if (keystoreProperties.containsKey('storeFile')) {
@@ -60,14 +79,24 @@ android {
         debug {
             // 디버그 빌드는 서명 설정 제외
             signingConfig null
+=======
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.debug
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
         }
     }
 }
 
 flutter {
     source = "../.."
+<<<<<<< HEAD
 }
 
 dependencies {
     // TFLite 관련 종속성이 필요한 경우 여기에 추가
+=======
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
 }

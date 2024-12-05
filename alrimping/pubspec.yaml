@@ -1,0 +1,65 @@
+<<<<<<< HEAD
+=======
+#pubspec.yaml
+>>>>>>> 849047cba10491d28e72d1e61f195cf1919ab9c0
+name: flutterwork
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  fl_chart: ^0.69.2
+  noise_meter: ^5.0.2
+  flutter_sound: ^9.2.13
+  permission_handler: ^11.3.0
+  path_provider: ^2.0.11
+  flutter_background_service: 5.0.2
+  flutter_background_service_android: 6.1.0
+  flutter_background_service_ios: ^5.0.0
+  flutter_local_notifications: ^18.0.1
+<<<<<<< HEAD
+  flutter_blue_plus: ^1.0.0
+=======
+  flutter_audio_waveforms: ^1.2.1+8
+  shared_preferences: ^2.2.2
+  tflite_flutter: ^0.9.0
+  vibration: ^1.7.0
+  fl_chart: ^0.45.1
+>>>>>>> 849047cba10491d28e72d1e61f195cf1919ab9c0
+
+flutter_native_splash:
+  color: "#F2F2F2"
+  image: assets/images/splash_logo.png
+  android: true
+  ios: true
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png" # 앱 아이콘 경로
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/splash_logo.png
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    - assets/yamnet.tflite
+    - assets/yamnet_labels.txt
+=======
+>>>>>>> 80351570d5121fe36e7f78f86b8c85e39c8ff7f1
+>>>>>>> 849047cba10491d28e72d1e61f195cf1919ab9c0

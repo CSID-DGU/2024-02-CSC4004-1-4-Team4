@@ -17,7 +17,11 @@ lib/generated_plugin_registrant.dart
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.*
+<<<<<<< HEAD
 **/android/keystore.properties
+=======
+**/android/key.properties
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
 *.jks
 
 # iOS 관련

@@ -57,10 +57,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     }
   }
 
+<<<<<<< HEAD
   bool _isTogglingRecording = false;  // 토글 작업의 중복 실행을 방지하기 위한 플래그
 
   void _toggleRecording() async {
     // 이미 토글 작업이 진행 중이라면 추가 실행을 방지합니다
+=======
+  bool _isTogglingRecording = false;
+
+  void _toggleRecording() async {
+    // 중복 실행 방지
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
     if (_isTogglingRecording) return;
     _isTogglingRecording = true;
 
@@ -69,12 +76,19 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         // 녹음 시작 시퀀스
         try {
           await _audioManager.startDetection();
+<<<<<<< HEAD
           // 백그라운드 알림 설정 및 애니메이션 시작
+=======
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
           await _notificationService.showServiceNotification(true);
           _animationController.repeat(reverse: true);
         } catch (startError) {
           debugPrint('녹음 시작 실패: $startError');
+<<<<<<< HEAD
           // 시작 실패 시 사용자에게 알림
+=======
+          // 시작 실패시에만 사용자에게 알림
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -87,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         }
       } else {
         // 녹음 중지 시퀀스
+<<<<<<< HEAD
         // 애니메이션을 먼저 중지하여 UI 응답성 향상
         _animationController.reset();
 
@@ -98,19 +113,42 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       }
 
       // 위젯이 여전히 유효한 상태인지 확인 후 상태 업데이트
+=======
+        _animationController.reset();
+
+        // 중지 과정의 오류는 조용히 처리
+        try {
+          await Future.wait([
+            _audioManager.stopDetection(),
+            _notificationService.showServiceNotification(false),
+          ]);
+        } catch (stopError) {
+          // 로그만 남기고 사용자에게는 알리지 않음
+          debugPrint('녹음 중지 중 비치명적 오류: $stopError');
+        }
+      }
+
+      // 상태 업데이트
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
       if (mounted) {
         setState(() {
           _isRecording = _audioManager.isRecording;
         });
       }
     } catch (e) {
+<<<<<<< HEAD
       debugPrint('녹음 토글 중 오류: $e');
       // 오류 발생 시 안전하게 상태 복구
+=======
+      // 정말 치명적인 오류일 경우에만 사용자에게 알림
+      debugPrint('심각한 오류 발생: $e');
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
       if (mounted) {
         setState(() {
           _isRecording = false;
         });
       }
+<<<<<<< HEAD
       // 사용자에게 오류 알림
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -122,6 +160,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       }
     } finally {
       // 작업 완료 후 반드시 토글 플래그를 리셋
+=======
+    } finally {
+>>>>>>> a83704204ae2e734dfd68e5a84a8a0e004aae596
       _isTogglingRecording = false;
     }
   }
